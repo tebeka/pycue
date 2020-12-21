@@ -1,0 +1,7 @@
+languages:
+  - tag: en
+    name: English
+  - tag: nl
+    name: dutch
+  - tag: no
+    name: Norwegian
