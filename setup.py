@@ -27,7 +27,7 @@ with open('README.md') as fp:
     long_desc = fp.read()
 
 setup(
-    name='cue',
+    name='pycue',
     version=version(),
     description='Python wrapper for https://cuelang.org',
     long_description=long_desc,
