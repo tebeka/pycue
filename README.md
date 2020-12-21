@@ -2,6 +2,8 @@
 
 ![cue](https://github.com/tebeka/cue/workflows/cue/badge.svg)
 
+**Alpha release - use at your own risk**
+
 
 ## Examples
 
