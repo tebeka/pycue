@@ -1,4 +1,5 @@
 """cue is a Python wrapper for https://cuelang.org"""
+from os import environ
 from subprocess import run
 from tempfile import NamedTemporaryFile
 
@@ -9,7 +10,7 @@ class Error(Exception):
     pass
 
 
-cue_exe = 'cue'
+cue_exe = environ.get('CUE_EXE', 'cue')
 
 # File types
 GO = 'go'
