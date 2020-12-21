@@ -22,7 +22,7 @@ jobs:
         python -m pip install -r dev-requirements.txt
     - name: Lint with flake8
       run: |
-        flake8 .
+        python -m flake8 .
     - name: Install cue
       run: |
         curl -LO https://github.com/cuelang/cue/releases/download/v0.2.2/cue_0.2.2_Linux_x86_64.tar.gz
