@@ -21,6 +21,7 @@ def load_deps(file_name):
     return deps
 
 
+install_requires = load_deps('requirements.txt')
 tests_require = load_deps('dev-requirements.txt')
 
 with open('README.md') as fp:
@@ -37,8 +38,9 @@ setup(
     license='MIT',
     url='https://github.com/tebeka/cue',
     py_modules=['cue'],
+    install_requires=install_requires,
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
         'Operating System :: POSIX :: Linux',
         'Operating System :: MacOS',

@@ -3,7 +3,9 @@ from os import environ
 from subprocess import run
 from tempfile import NamedTemporaryFile
 
-__version__ = '0.1.0'
+import yaml
+
+__version__ = '0.1.1'
 
 
 class Error(Exception):
@@ -48,6 +50,21 @@ class vet:
 
         with _tmp_file(cue_data, '.cue') as cf, _tmp_file(data, ext) as df:
             vet.files(cf.name, df.name)
+
+
+class Validator:
+    def __init__(self, schema):
+        self.schema = schema
+
+    @classmethod
+    def from_file(cls, file_name):
+        with open(file_name, 'rb') as fp:
+            schema = fp.read()
+        return cls(schema)
+
+    def validate(self, obj):
+        data = yaml.safe_dump(obj)
+        vet.data(self.schema, data, YAML)
 
 
 def check_install():
