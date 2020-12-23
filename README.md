@@ -10,8 +10,17 @@
 ```python
 
 import cue
+import yaml
 
+# Use over files
 cue.vet.files('schema.cue', 'data.yml')  # Will raise cue.Error on errors
+
+# Use Validator
+with open('data.yml') as fp:
+    obj = yaml.safe_load(fp)
+
+v = cue.Validator.from_file('schema.cue')
+v.validate(obj)
 ```
 
 ## Install
