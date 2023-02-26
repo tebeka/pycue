@@ -1,4 +1,4 @@
 exclude tests/__pycache__/*
 include README.md LICENSE.txt
-include dev-requirements.txt
+include requirements.txt dev-requirements.txt
 recursive-include tests *
