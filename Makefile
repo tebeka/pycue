@@ -3,6 +3,7 @@ default:
 
 test:
 	python -m flake8 .
+	python -m mypy cue.py
 	python -m pytest -v tests
 
 upload:

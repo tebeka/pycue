@@ -2,6 +2,7 @@
 from os import environ
 from subprocess import run
 from tempfile import NamedTemporaryFile
+from typing import IO, Any, Self
 
 import yaml
 
@@ -23,7 +24,7 @@ TEXT = 'text'
 YAML = 'yaml'
 
 # File types (cue filetypes)
-extension = {
+extension: dict[str, str] = {
     GO: '.go',
     JSON: '.json',
     JSONL: '.jsonl',
@@ -35,14 +36,14 @@ extension = {
 
 class vet:
     @staticmethod
-    def files(cue_file, data_file):
+    def files(cue_file: str, data_file: str) -> None:
         """Validate from files"""
         out = run([cue_exe, 'vet', cue_file, data_file], capture_output=True)
         if out.returncode != 0:
             raise Error(out.stderr.decode())
 
     @staticmethod
-    def data(cue_data, data, data_type):
+    def data(cue_data: str | bytes, data: str | bytes, data_type: str) -> None:
         """Validate from data (str or bytes)"""
         ext = extension.get(data_type)
         if ext is None:
@@ -53,28 +54,28 @@ class vet:
 
 
 class Validator:
-    def __init__(self, schema):
+    def __init__(self, schema: bytes | str):
         self.schema = schema
 
     @classmethod
-    def from_file(cls, file_name):
+    def from_file(cls, file_name: str) -> Self:
         with open(file_name, 'rb') as fp:
             schema = fp.read()
         return cls(schema)
 
-    def validate(self, obj):
+    def validate(self, obj: Any) -> None:
         data = yaml.safe_dump(obj)
         vet.data(self.schema, data, YAML)
 
 
-def check_install():
+def check_install() -> None:
     """Validate that the "cue" command line is installed"""
     out = run([cue_exe, 'version'])
     if out.returncode != 0:
         raise Error(f'{cue_exe} not found in PATH')
 
 
-def _tmp_file(data, ext):
+def _tmp_file(data: str | bytes, ext: str) -> IO:
     if isinstance(data, str):
         data = data.encode('utf-8')
 
