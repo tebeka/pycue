@@ -2,7 +2,7 @@
 from os import environ
 from subprocess import run
 from tempfile import NamedTemporaryFile
-from typing import IO, Any, Self
+from typing import IO, Any
 
 import yaml
 
@@ -58,7 +58,7 @@ class Validator:
         self.schema = schema
 
     @classmethod
-    def from_file(cls, file_name: str) -> Self:
+    def from_file(cls, file_name: str):
         with open(file_name, 'rb') as fp:
             schema = fp.read()
         return cls(schema)
