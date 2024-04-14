@@ -1,3 +1,4 @@
-dist
+.envrc
 build
+dist
 pycue.egg-info
