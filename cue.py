@@ -5,7 +5,8 @@ from tempfile import NamedTemporaryFile
 
 import yaml
 
-__version__ = '0.1.2'
+__version__ = '0.1.3'
+__cue__version__ = '0.4.0'
 
 
 class Error(Exception):
